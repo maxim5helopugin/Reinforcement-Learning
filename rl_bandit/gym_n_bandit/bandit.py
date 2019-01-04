@@ -20,7 +20,10 @@ class NArmedBandit(gym.Env):
         return 0
 
     def render(self, mode='human', close=False):
-        print("The true mean of rewards:")
+        print('{:10}'.format("True vals:"),end=" [")
         for dist in self.means:
-        	print('%5.3f'%dist,end=' ')
-        print()
+        	print('%6.3f'%dist,end=' ')
+        print("]")
+
+    def getmax(self):
+    	return np.max(self.means)
