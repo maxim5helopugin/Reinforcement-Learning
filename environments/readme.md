@@ -1,6 +1,6 @@
-### Environments
+# Environments
 
-#rl_bandit
+## rl_bandit
 - A 10-armed bandit playground
 - The task is to maximize the reward, given a single state and 10 possible actions - namely, arms of a bandit
 - Each arm has a mean reward which is chosen via a gaussian destribution with mean of 0 and variance of 1
@@ -9,7 +9,7 @@
 - To use the environment in gym, import it via "import gym_n_bandit" and make it via gym.make('NArmedBandit')
 - env.render() prints the means of each of the arms' rewards 
 
-#rl_cliff_walker
+## rl_cliff_walker
 - A gridworld with a cliff
 - The task is to reach the goal state from the start state
 - Start state is a coordinate on the grid = (3,0)
@@ -25,7 +25,7 @@
 - To use the environment in gym, import it via "import gym_cliff_walker" and make it via gym.make('CliffWalker')
 - env.render() prints current gridworld statespace
 
-#rl_windy_world
+## rl_windy_world
 - A gridworld with a windy region
 - The task is to reach the goal state from the start state
 - Start state is a coordinate on the grid = (3,0)
