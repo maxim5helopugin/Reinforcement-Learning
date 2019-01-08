@@ -1,8 +1,11 @@
+# Maxim Shelopugin
+# Cliff Walker
 import numpy as np
 import gym
 from gym import spaces
 
 class CliffWalker(gym.Env):
+# Initialize the grid, start pos = (3,0), goal pos = (3,9)
 	def __init__(self):
 		self.grid = [
 	    	list("__________"),
@@ -19,11 +22,14 @@ class CliffWalker(gym.Env):
 		self.cliff_reward = -100
 		self.goal_reward = 100
 		self.action_space = spaces.Discrete(4)
+		self.observation_space = spaces.Discrete(40)
 
+# Each action results in -1 reward, unless it reaches goal, or the cliff
 	def step(self, action):
 		reward = 0
 		done = False
 
+# Action adjustment
 		if action == 0:
 			self.posy-=1
 		if action == 1:
@@ -33,6 +39,7 @@ class CliffWalker(gym.Env):
 		if action == 3:
 			self.posx-=1
 
+# Dont leave the bounds
 		if self.posx < 0:
 			self.posx = 0
 		if self.posx > 3:
@@ -42,10 +49,13 @@ class CliffWalker(gym.Env):
 		if self.posy > 9:
 			self.posy = 9
 
+# On-cliff = reset position, get negative reward
 		if self.on_cliff():
 			reward = self.cliff_reward
 			self.posx = 3
 			self.posy = 0
+
+# Goal state = mark game as done, get reward
 		elif self.is_goal():
 			reward = self.goal_reward
 			done = True
@@ -54,20 +64,24 @@ class CliffWalker(gym.Env):
 
 		return (self.posx, self.posy), reward, done, {}
 
+# Check if on cliff
 	def on_cliff(self):
 		if self.posx==3 and (self.posy!=0 and self.posy!=9):
 			return True
 		return False
 
+# Check if on goal
 	def is_goal(self):
 		if self.posx == self.rewx and self.posy == self.rewy:
 			return True
 		return False
 
+# Reset position
 	def reset(self):
 		self.posx = 3
 		self.posy = 0
 
+# Render the environment
 	def render(self, mode='human', close=False):
 		self.grid[self.posx][self.posy] = 'O'
 		for row in self.grid:
