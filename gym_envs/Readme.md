@@ -1,12 +1,14 @@
 # Environments
 
+- To import the environment linrary, enter "import gym_envs"
+
 ## rl_bandit
 - A 10-armed bandit playground
 - The task is to maximize the reward, given a single state and 10 possible actions - namely, arms of a bandit
 - Each arm has a mean reward which is chosen via a gaussian destribution with mean of 0 and variance of 1
 - Each action taken results in a random reward, pulled from a gaussian destribution with mean of arm's mean and variance of 1
 - To integrate the environment in gym, navigate to the folder with setup.py file, and type 'pip -install .'
-- To use the environment in gym, import it via "import gym_n_bandit" and make it via gym.make('NArmedBandit')
+- To use the environment in gym make it via gym.make('NArmedBandit-v0')
 - env.render() prints the means of each of the arms' rewards 
 
 ## rl_cliff_walker
@@ -22,7 +24,7 @@
 - If the agent moves to the cliff, the reward becomes -100, and the position of the agent is reset to a start state
 - If the agent reaches the goal, the reward becomes +100
 - To integrate the environment in gym, navigate to the folder with setup.py file, and type 'pip -install .'
-- To use the environment in gym, import it via "import gym_cliff_walker" and make it via gym.make('CliffWalker')
+- To use the environment in gym make it via gym.make('CliffWalker-v0')
 - env.render() prints current gridworld statespace
 
 ## rl_windy_world
@@ -39,5 +41,5 @@
 - If the agent enters the wind area, each following action will incur the displacement in negative y direction
 - If the wind area is strong, the displacement = 2, otherwise the displacement = 1
 - To integrate the environment in gym, navigate to the folder with setup.py file, and type 'pip -install .'
-- To use the environment in gym, import it via "import gym_windy_world" and make it via gym.make('WindyGridworld')
+- To use the environment in gym make it via gym.make('WindyWorld')
 - env.render() prints current gridworld statespace

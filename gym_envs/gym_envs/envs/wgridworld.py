@@ -4,7 +4,7 @@ import numpy as np
 import gym
 from gym import spaces
 
-class WindyGridworld(gym.Env):
+class WindyWorld(gym.Env):
 # Initialize the grid, wind locations, start = (3,0), goal = (3,7)
 	def __init__(self):
 		self.grid = [
