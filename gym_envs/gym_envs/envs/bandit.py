@@ -4,26 +4,37 @@
 import numpy as np
 import gym
 from gym import spaces
+from gym.utils import seeding
 
 class NArmedBandit(gym.Env):
 # Initialize with 10 arms, gausssian means with mean = 0, variance = 1
     def __init__(self):
         self.bandits = 10
         self.means = []
-        for _ in range(self.bandits):
-        	self.means.append(np.random.normal(0,1))
         self.action_space = spaces.Discrete(self.bandits)
         self.observation_space = spaces.Discrete(1)
+        self.seed_num = 1
+        self.np_random = None
+        self.seed(self.seed_num)
 
 # Each action returns a random reward with mean = mean[a], variance = 1
     def step(self, action):
         assert self.action_space.contains(action)
-        reward = np.random.normal(self.means[action],1)
+        reward = self.np_random.normal(self.means[action],1)
         return 0, reward, True, {}
+
+# Define the seed
+    def seed(self, seed=1):
+        self.seed_num = seed
+        self.np_random, seed = seeding.np_random(seed)
+        self.means = []
+        for _ in range(self.bandits):
+            self.means.append(self.np_random.normal(0,1))
+        return [seed]
 
 # Nothing to reset
     def reset(self):
-        return 0
+        self.seed(self.seed_num)
 
 # When rendering, print the true reward destribution
     def render(self, mode='human', close=False):
