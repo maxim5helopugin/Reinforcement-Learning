@@ -14,3 +14,8 @@ register(
     id='WindyWorld-v0',
     entry_point='gym_envs.envs:WindyWorld',
 )
+
+register(
+    id='MaxBias-v0',
+    entry_point='gym_envs.envs:MaxBias',
+)
