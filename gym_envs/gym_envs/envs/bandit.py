@@ -20,7 +20,7 @@ class NArmedBandit(gym.Env):
 # Each action returns a random reward with mean = mean[a], variance = 1
     def step(self, action):
         assert self.action_space.contains(action)
-        reward = self.np_random.gaussian(self.means[action],1)
+        reward = self.np_random.normal(self.means[action],1)
         return 0, reward, True, {}
 
 # Define the seed
@@ -29,7 +29,7 @@ class NArmedBandit(gym.Env):
         self.np_random, seed = seeding.np_random(seed)
         self.means = []
         for _ in range(self.bandits):
-            self.means.append(self.np_random.gaussian(0,1))
+            self.means.append(self.np_random.normal(0,1))
         return [seed]
 
 # Nothing to reset
