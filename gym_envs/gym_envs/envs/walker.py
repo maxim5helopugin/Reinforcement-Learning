@@ -3,6 +3,8 @@
 import numpy as np
 import gym
 from gym import spaces
+from gym.utils import seeding
+import os
 
 class CliffWalker(gym.Env):
 # Initialize the grid, start pos = (3,0), goal pos = (3,9)
@@ -20,9 +22,12 @@ class CliffWalker(gym.Env):
 		self.rewy = 9
 		self.reg_reward = -1
 		self.cliff_reward = -100
-		self.goal_reward = 100
+		self.goal_reward = 0
 		self.action_space = spaces.Discrete(4)
 		self.observation_space = spaces.Discrete(40)
+		self.seed_num = 1
+		self.np_random = None
+		self.seed(self.seed_num)
 
 # Each action results in -1 reward, unless it reaches goal, or the cliff
 	def step(self, action):
@@ -54,6 +59,7 @@ class CliffWalker(gym.Env):
 			reward = self.cliff_reward
 			self.posx = 3
 			self.posy = 0
+			done = True
 
 # Goal state = mark game as done, get reward
 		elif self.is_goal():
@@ -62,7 +68,7 @@ class CliffWalker(gym.Env):
 		else:
 			reward = self.reg_reward
 
-		return (self.posx, self.posy), reward, done, {}
+		return (self.posx*10+self.posy), reward, done, {}
 
 # Check if on cliff
 	def on_cliff(self):
@@ -80,6 +86,8 @@ class CliffWalker(gym.Env):
 	def reset(self):
 		self.posx = 3
 		self.posy = 0
+		self.seed(self.seed_num)
+		return self.posx*10+self.posy
 
 # Render the environment
 	def render(self, mode='human', close=False):
@@ -88,3 +96,9 @@ class CliffWalker(gym.Env):
 			print(row)
 		print()
 		self.grid[self.posx][self.posy] = '_'
+
+# Define the seed
+	def seed(self, seed=1):
+		self.seed_num = seed
+		self.np_random, seed = seeding.np_random(seed)
+		return seed
