@@ -20,4 +20,4 @@ Repository to store reinforcement learning projects and experiments
 # Tabular methods
 - Sarsa, Q-learning and double q-learning on different environments
 - Cliff-walker - sarsa and q-learning comparison
-- Windy-world - q-learning and double q-learning comparison
+- MaxBias - q-learning and double q-learning comparison
