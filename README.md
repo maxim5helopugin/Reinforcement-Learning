@@ -17,7 +17,12 @@ Repository to store reinforcement learning projects and experiments
 - Cliff Walker - reach the goal state, without touching the cliff
 - Windy World - reach the goal state, while dealing with noisy actions
 
-# Tabular methods
+# Tabular Methods
 - Sarsa, Q-learning and double q-learning on different environments
 - Cliff-walker - sarsa and q-learning comparison
 - MaxBias - q-learning and double q-learning comparison
+
+# Approximate Methods
+- Reinforcement learning algorithms, with non-linear function approximators
+- Lunar Lander Continuous - Policy Gradient solution to the Lunar Lander
+- Lunar Lander Discrete - Deep Q Learning solution to the Lunar Lander
